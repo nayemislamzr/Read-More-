@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+    "name": "fuck",
+    "version": "0.001",
+    "description": "A reader mode extension with a full of features",
+    "browser_action": {
+        "default_icon": "adjust.png",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["html_parser.js", "jquery.js", "content.js"]
+    }],
+    "web_accessible_resources": ["bear.htm"],
+    "permissions": [
+        "activeTab",
+        "storage",
+        "https://generativelanguage.googleapis.com/"
+    ],
+    "content_security_policy": "script-src 'self'; object-src 'self'"
+}
