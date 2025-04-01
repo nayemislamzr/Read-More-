@@ -1,0 +1,793 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --main-bg-color: #0d6eec;
+    --side-menu-color: #b9b5b5;
+    --side-menu-button-color: #0d6eec;
+    --side-element-bg-color: #cccbcb;
+    --side-element-hover-color: #a5a1a1;
+    --article-background-color: #f2f2e0;
+    --font-color: black;
+    --menu-icon: url("icon_black/menu_black.svg");
+    --small-font-color: white;
+    --note-bg-color: #d0d0bb;
+    --note-title-color: #0d6eec;
+    --font: Montserrat;
+    --font-w: lighter;
+    --second-bg-color: skyblue;
+    --font-size: 16px;
+    --navbar-bg: #333; /* Added */
+    --navbar-text: white; /* Added */
+    --navbar-hover-bg: #555; /* Added */
+}
+
+[data-theme="discord_dark"] {
+    --main-bg-color: #2f3136;
+    --side-menu-color: #2f3136;
+    --side-menu-button-color: #505152;
+    --side-element-bg-color: #cccbcb;
+    --side-element-hover-color: #a5a1a1;
+    --article-background-color: lightgray;
+    --font-color: black;
+    --small-font-color: white;
+    --second-bg-color: #7b7f88;
+    --navbar-bg: #2f3136; /* Discord dark navbar */
+    --navbar-text: #dcddde;
+    --navbar-hover-bg: #40444b;
+}
+
+[data-theme="firefox_dark"] {
+    --main-bg-color: #181d20;
+    --side-menu-color: #181d20;
+    --side-menu-button-color: #272b35;
+    --side-element-bg-color: gray;
+    --side-element-hover-color: #4a4d55;
+    --article-background-color: lightgray;
+    --font-color: black;
+    --small-font-color: #b7b7b7;
+    --second-bg-color: #7b7f88;
+    --navbar-bg: #181d20; /* Firefox dark navbar */
+    --navbar-text: #fbfbfe;
+    --navbar-hover-bg: #323639;
+}
+
+[data-theme="nine_anime_dark"] {
+    --main-bg-color: #17151c;
+    --side-menu-color: #17151c;
+    --side-menu-button-color: #26242b;
+    --side-element-bg-color: gray;
+    --side-element-hover-color: #4a4d55;
+    --article-background-color: lightgray;
+    --font-color: black;
+    --small-font-color: #b7b7b7;
+    --second-bg-color: #7b7f88;
+    --navbar-bg: #17151c; /* 9anime dark navbar */
+    --navbar-text: #a9a9a9;
+    --navbar-hover-bg: #26242b;
+}
+
+[data-theme="youtube_light"] {
+    --main-bg-color: #f00;
+    --side-menu-color: #fffdfd;
+    --side-menu-button-color: #f00;
+    --side-element-bg-color: #cccbcb;
+    --side-element-hover-color: #a5a1a1;
+    --article-background-color: white;
+    --font-color: black;
+    --second-bg-color: #f29999;
+    --navbar-bg: #ffffff; /* YouTube light navbar */
+    --navbar-text: #030303;
+    --navbar-hover-bg: #f2f2f2;
+}
+
+/* New Navbar Styles */
+.navbar {
+    background-color: var(--navbar-bg);
+    padding: 5px 10px; /* Reduced padding */
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure navbar stays on top */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Arial, sans-serif; /* Match example */
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    color: var(--navbar-text);
+    padding: 8px 12px; /* Adjusted padding */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 4px; /* Slight rounding */
+    transition: background-color 0.2s ease; /* Smooth hover */
+}
+
+.navbar li:hover {
+    background-color: var(--navbar-hover-bg);
+}
+
+.navbar li i {
+    margin-right: 6px; /* Space between icon and text */
+    font-size: 1.1em; /* Slightly larger icons */
+}
+
+.navbar .spacer {
+    flex: 1; /* Pushes items apart */
+}
+
+.navbar .search-container {
+    padding: 0; /* Remove padding for container */
+}
+.navbar .search-container:hover {
+     background-color: transparent; /* Don't highlight container on hover */
+}
+
+/* Adjust search bar for navbar */
+.navbar .searchBar {
+    display: flex;
+    align-items: center;
+    margin: 0 10px; /* Add some margin */
+}
+
+.navbar #searchQueryInput {
+    height: 28px; /* Match example style */
+    background: rgba(255, 255, 255, 0.15); /* Darker background */
+    color: var(--navbar-text);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px; /* Rounded */
+    padding: 0 10px 0 15px;
+    font-size: 0.9rem;
+    width: 150px; /* Adjust width as needed */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.navbar #searchQueryInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+.navbar #searchQueryInput:focus,
+.navbar #searchQueryInput:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+}
+
+.navbar #searchQuerySubmit {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--navbar-text);
+    padding: 0 10px;
+    margin-left: -35px; /* Position icon inside input */
+    cursor: pointer;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar #searchQuerySubmit i {
+    margin-right: 0; /* No margin for search icon */
+    font-size: 1em;
+}
+
+/* Adjust dark mode toggle switch for navbar */
+.navbar .switch {
+    width: 40px; /* Smaller switch */
+    height: 20px;
+    margin: 0 5px; /* Add some margin */
+}
+
+.navbar .slider {
+    background-color: #555; /* Darker default background */
+}
+
+.navbar .slider:before {
+    height: 14px; /* Smaller handle */
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+}
+
+.navbar input:checked + .slider {
+    background-color: #777; /* Checked background */
+}
+
+.navbar input:checked + .slider:before {
+    transform: translateX(20px); /* Adjusted translation */
+}
+
+/* Add active state for mode toggles */
+.navbar li.active-mode {
+    background-color: var(--navbar-hover-bg); /* Use hover color or a distinct color */
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4); /* Inset shadow to indicate active */
+}
+
+/* End New Navbar Styles */
+
+
+.flex_box_container {
+    position: static;
+    /* Remove margin-top if navbar is sticky */
+    /* margin-top: 60px; Adjust based on navbar height if not sticky */
+}
+
+/* Remove old flex_box and menu styles */
+/*
+.flex_box { ... }
+.menu { ... }
+.menu:hover { ... }
+*/
+
+.article_container {
+    display: grid;
+    /* grid-template-columns: auto auto; */ /* Let article take full width initially */
+    grid-template-columns: 1fr; /* Single column layout */
+    background-color: var(--article-background-color);
+    color: var(--font-color);
+}
+
+.side_menu {
+    padding: 10px;
+    background-color: var(--side-menu-color);
+    /* box-shadow: 0px 0px 7px black; */
+    /* position: sticky;
+    top:0px; */
+    position: fixed;
+    /* left:-250px; */
+    left: 0px;
+    top: 0px;
+    min-width: 600px;
+    max-width: 600px;
+    transform: translateX(-100%);
+    will-change: transform;
+    transition: transform .3s cubic-bezier(0, 0, .3, 1);
+    font-family: var(--font);
+    font-weight: var(--font-w);
+    /* margin-top: 2px; */ /* Removed, navbar handles top */
+    /* transition: left 0.4s cubic-bezier(.55,.09,.68,.53); */
+    display: block;
+    overflow-y: auto;
+    max-height: 100vh;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    z-index: 1;
+    border-top-right-radius: 0; /* Remove radius if it looks odd with navbar */
+    /* Ensure initial state is hidden and transition is set */
+    transform: translateX(-100%);
+    will-change: transform;
+    transition: transform .3s cubic-bezier(0, 0, .3, 1);
+}
+
+/* Add class for visible state */
+.side_menu.visible {
+    transform: translateX(0);
+}
+
+#txt_head_search {
+    width: -moz-available;
+    width: -webkit-fill-available;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: rgb(228, 218, 218);
+    color: rgb(51, 54, 87);
+    appearance: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    box-shadow: -5px 0px 0px 0px var(--main-bg-color), 5px 0px 0px 0px var(--main-bg-color);
+    border-left: 5px solid var(--second-bg-color);
+    border-right: 5px solid var(--second-bg-color);
+    border-top: 1px solid var(--main-bg-color);
+    border-bottom: 1px solid var(--main-bg-color);
+}
+
+#txt_head_search:hover {
+    background-color: white;
+    color: black;
+}
+
+.side_menu_button {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: var(--side-menu-button-color);
+    color: white;
+    box-shadow: 0px 2px 2px black;
+    border-bottom: 2px solid transparent;
+    border-top-right-radius: 0; /* Remove radius */
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu_logo {
+    height: 20px;
+}
+
+.logo {
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    padding: 5px;
+    /* background-color: white; */
+    /* border: 4px solid rgb(156, 153, 153); */
+}
+
+.side_menu_button:hover {
+    border-bottom: 2px solid white;
+    /* background-color: var(--side-border-color); */
+    color: rgb(216, 204, 204);
+    cursor: pointer;
+}
+
+.side_menu_button:hover>.logo {
+    background-color: rgba(124, 120, 120, 0.425);
+}
+
+.side_menu_element {
+    /* margin-top:10px; */
+    /* margin-bottom: 10px; */
+    padding: 15px;
+    line-height: 30px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    /* border-left: 4px solid var(--side-menu-button-color); */
+    /* border-radius: 20px; */
+    /* border-bottom: 4px solid var(--side-menu-button-color); */
+    border-left: 3px solid transparent;
+    border-bottom: 0.4px solid white;
+    background-color: var(--side-element-bg-color);
+    display: block;
+    text-decoration: none;
+}
+
+.side_menu_element:hover {
+    background-color: var(--side-element-hover-color);
+    border-left: 3px solid var(--side-menu-button-color);
+    color: white;
+    cursor: pointer;
+}
+
+.settings_menu {
+    display: none;
+    /* display: block; */
+    position: fixed;
+    /*top: 50%; */
+    top: 100%;
+    /* left: 50%; */
+    right: -220px;
+    transform: translate(-50%, -50%);
+    /* width: 50%;
+    height: 50%; */
+    width: 0%;
+    height: 0%;
+    background-color: #cccccc;
+    border-radius: 10px;
+    border: 4px solid #545961;
+    padding: 10px;
+    display: grid;
+    font-family: var(--font);
+    font-weight: var(--font-w);
+    /* flex-direction: column;
+    justify-content: space-evenly; */
+    grid-template-rows: repeat(4, auto);
+    box-shadow: 5px 5px 5px black;
+    transition: 4s;
+}
+
+.setting_content {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    background-color: transparent;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 4px solid transparent;
+    border-left: 3px solid transparent;
+}
+
+.setting_content:hover {
+    background-color: rgb(92, 104, 116);
+    border-bottom: 4px solid white;
+    border-left: 3px solid white;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.article {
+    /* margin-left: 10%; */ /* Replaced by auto margin */
+    /* margin-right: 10%; */ /* Replaced by auto margin */
+    margin-left: auto; /* Center the container */
+    margin-right: auto; /* Center the container */
+    margin-top: 4%;
+    margin-bottom: 4%;
+    letter-spacing: 0;
+    line-height: 2;
+    font-family: Open Sans;
+    font-size: var(--font-size);
+    /* padding-top: 20px; */ /* Replaced by general padding */
+    padding: 30px 50px; /* Increased padding (top/bottom, left/right) */
+    text-align: center; /* Center the text */
+    background-color: #f8f8f4; /* Slightly lighter background than default --article-background-color */
+    /* Ensure max-width is still controlled by JS if needed, but auto margins handle centering */
+    max-width: 80%; /* Set a default max-width for centering to work */
+}
+
+/* Adjust theme-specific article backgrounds if needed */
+[data-theme="discord_dark"] .article,
+[data-theme="firefox_dark"] .article,
+[data-theme="nine_anime_dark"] .article {
+    background-color: #e0e0e0; /* Lighter gray for dark themes */
+}
+
+[data-theme="youtube_light"] .article {
+     background-color: #ffffff; /* Keep it white for this theme */
+}
+
+
+.more_feature {
+    background: var(--main-bg-color);
+    border-radius: 50%;
+    position: fixed;
+    justify-content: center;
+    display: flex;
+    bottom: 55px;
+    right: 30px;
+    padding: 10px;
+    box-shadow: 0px 3px 3px black;
+    z-index: 900; /* Ensure it's below navbar */
+}
+
+.note_container {
+    /* display: block; */
+    display: none;
+    margin-top: 4%;
+    padding: 10px;
+    position: fixed;
+    top: 40px;
+    right: 0px;
+    height: 100vh;
+    width: 50%;
+}
+
+.note_title {
+    background-color: var(--main-bg-color);
+    padding: 8px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    font-weight: bolder;
+}
+
+.note {
+    width: 99.7%;
+    height: 100%;
+    background-color: var(--note-bg-color);
+    border: 1px solid var(--main-bg-color);
+    font-size: 18px;
+    font-family: Open Sans;
+}
+
+code {
+    display: inline-block;
+    border-radius: 10px;
+    margin: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 15px;
+    border: 1px solid black;
+    background-color: rgba(29, 24, 24, 0.7);
+    font-size: 15px;
+    color: rgb(232, 185, 241);
+    text-shadow: 1px 1px black;
+    font-weight: bolder;
+    box-shadow: 5px 5px 5px #887388;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: left;
+    display: block;
+}
+
+code::before {
+    content: counter(listing) ". ";
+    display: inline-block;
+    width: 8em;
+    padding-left: auto;
+    margin-left: auto;
+    text-align: right;
+}
+
+.article h1,
+h2,
+h3,
+h4 {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.highlight {
+    background-color: yellow;
+    font-weight: bolder;
+}
+
+.comment {
+    border: solid 2px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 23px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 1px;
+    bottom: 2.67px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #676b70;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.searchBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#searchQueryInput {
+    width: 100%;
+    height: 26px;
+    background: #cccccc;
+    outline: none;
+    border: none;
+    border-radius: 1.625rem;
+    padding: 0 3.5rem 0 1.5rem;
+    font-size: 1rem;
+    border: 4px solid white;
+    transition: 0.4s;
+}
+
+#searchQueryInput:hover {
+    background: white;
+    transition: 0.5s;
+}
+
+#searchQuerySubmit {
+    width: 3.5rem;
+    height: 2.8rem;
+    margin-left: -3.5rem;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+#searchQuerySubmit:hover {
+    cursor: pointer;
+}
+
+.review_bar {
+    /* display: flex; */
+    display: none;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    background-color: #0d6eec;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.review_cotainer {
+    display: inline-block;
+    padding: 8px;
+    margin: 0px;
+    margin-right: 4px;
+    border-radius: 18px;
+    border: 3px solid white;
+    background-color: #cccccc;
+    color: #5f5f5f;
+    font-weight: lighter;
+    text-align: center;
+    cursor: pointer;
+}
+
+.review_cotainer::first-letter {
+    text-transform: capitalize;
+}
+
+.review_cotainer:checked,
+.review_cotainer:hover,
+.review_cotainer:active {
+    color: black;
+}
+
+.review_details_container {
+    margin: 10px;
+    padding: 3px;
+    border-top: 1.5px solid rgba(128, 128, 128, 0.4);
+}
+
+.controlwrapper {
+    padding: 10px;
+    z-index: 1;
+}
+
+.controlcontainer {
+    display: flex;
+    position: fixed;
+    font-family: var(--font);
+    font-weight: var(--font-w);
+    z-index: 1;
+    background-color: var(--side-menu-button-color);
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    right: -275px;
+    top: auto;
+    margin-top: 5px;
+    transition: right 0.4s cubic-bezier(.55, .09, .68, .53);
+    box-shadow: 0px 3px 3px black;
+    z-index: 900; /* Ensure it's below navbar */
+    /* Ensure initial state is hidden and transition is set */
+    right: -275px; /* Hidden state */
+    transition: right 0.4s cubic-bezier(.55, .09, .68, .53);
+}
+
+/* Add class for visible state */
+/* Position font controls container when visible */
+#font-controls-container.visible {
+    right: 10px; /* Visible state, slightly offset from edge */
+}
+
+
+.controlslider {
+    -webkit-appearance: none;
+    width: 250px;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2 s;
+    border-radius: 12px;
+    height: 4px;
+    background-color: #3e3e42;
+    box-shadow: 0px 1px 1px black;
+}
+
+.controlslider:hover {
+    opacity: 1;
+    background-color: white;
+    /* box-shadow: 0px 1px 2px 1px black; */
+}
+
+.controlslider::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: #f2f2e0;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    scroll-behavior: smooth;
+}
+
+.smallfont {
+    font-size: 10px;
+    color: var(--small-font-color);
+}
+
+.google-wrapper {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    /* display: none; */
+    visibility: hidden;
+    opacity: 80%;
+    height: max-content;
+    width: max-content;
+}
+
+.google-wrapper:hover {
+    opacity: 100%;
+}
+
+.rounded {
+    width: 16px;
+    padding: 8px;
+    background-color: var(--main-bg-color);
+    border-radius: 50%;
+    box-shadow: 0px 3px 3px black;
+    z-index: 900; /* Ensure it's below navbar */
+}
+
+.preference-container {
+    width: 90%;
+    position: fixed;
+    bottom: -55px;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    background-color: var(--main-bg-color);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: var(--font);
+    font-weight: var(--font-w);
+    justify-self: center;
+    z-index: 1;
+    box-shadow: 0px 0px 2px 1px black;
+    padding: 10px;
+    transition: bottom linear 0.4s;
+    /* Ensure initial state is hidden */
+     bottom: -100px; /* Start hidden below view, adjust as needed */
+}
+
+/* Add class for visible state */
+.preference-container.visible {
+    bottom: 0; /* Visible state */
+}
+
+.prefer-item {
+    color: white;
+    display: inline-block;
+}

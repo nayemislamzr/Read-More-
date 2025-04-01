@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear Reader</title>
+    <link rel="stylesheet" href="bear.css">
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <!-- Mapped existing functionalities -->
+            <li id="nav-toggle-menu"><i class="fas fa-bars"></i></li> <!-- Toggle Headings Menu -->
+            <li id="nav-toggle-prefs"><i class="fas fa-palette"></i></li> <!-- Toggle Preferences -->
+            <!-- Text Formatting Controls -->
+            <li id="nav-toggle-font-controls"><i class="fas fa-font"></i></li> <!-- Toggle Font/Text Sliders -->
+            <li id="nav-toggle-highlight"><i class="fas fa-highlighter"></i></li> <!-- Toggle Highlight Mode -->
+            <li id="nav-toggle-underline"><i class="fas fa-underline"></i></li> <!-- Toggle Underline Mode -->
+            <li><i class="fas fa-language"></i></li> <!-- Language (Placeholder) -->
+            <li class="spacer"></li>
+            <!-- Search Bar -->
+            <li class="search-container">
+                 <div class="searchBar">
+                    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search Article" value="" />
+                    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </li>
+             <!-- Mapped existing functionalities -->
+            <li id="nav-toggle-darkmode">
+                 <label class="switch" for="checkbox">
+                    <input type="checkbox" id="checkbox"/>
+                     <span class="slider round"></span>
+                 </label>
+             </li> <!-- Was toggle switch -->
+            <!-- Settings icon removed -->
+            <!-- Placeholder icons from example -->
+            <li><i class="fas fa-print"></i></li>
+            <li><i class="fas fa-save"></i></li>
+            <li><i class="fas fa-expand"></i></li>
+        </ul>
+    </nav>
+
+    <div class="flex_box_container">
+        <!-- Removed the old flex_box div -->
+
+
+        <!-- <div class="review_bar">
+                <div class="review_cotainer" id="overview" onclick="clicked()">Overview</div>
+                <div class="review_cotainer">cast</div>
+                <div class="review_cotainer">reviews</div>
+                <div class="review_cotainer">trailer & clips</div>
+                <div class="review_cotainer">people also search for</div>
+            </div> -->
+
+
+        <div class="article_container">
+            <div class="side_menu">
+                <div class="side_menu_button" id="close_head_content">
+                    <div style="font-size: 30px;">Head Topics</div><img class="logo" src="icon_white/close_white.svg"></div>
+                <div class="head_search">
+                    <input id="txt_head_search" type="text" placeholder="Search in h tags">
+                </div>
+            </div>
+
+
+            <div class="article">
+                <!-- this is template for article , text will be here -->
+            </div>
+
+            <div class="note_container">
+                <div class="note_title">
+                    title
+                </div>
+                <textarea class="note">
+            
+                    </textarea>
+            </div>
+
+            <!-- Container for Font/Text Sliders -->
+            <div id="font-controls-container" class="controlcontainer">
+                 <div class="controlwrapper"><input type="range" min="0" max="20" value="1" id="controlwidth" class="controlslider">
+                    <p id="controlwidthvalue" class="smallfont">Content-Width:1</p>
+                </div>
+                <div class="controlwrapper"><input type="range" min="1.2" max="8" value="1.2" id="controllineheight" class="controlslider">
+                    <p id="controllineheightvalue" class="smallfont">Line-Height : 1.2</p> <!-- Corrected initial display value -->
+                </div>
+                <div class="controlwrapper"><input type="range" min="0" max="20" value="1" id="controlletterspace" class="controlslider">
+                    <p id="controlletterspacevalue" class="smallfont">Letter-Space: 1</p>
+                </div>
+                <div class="controlwrapper"><input type="range" min="8" max="50" value="16" id="controlfontsize" class="controlslider"> <!-- Default value changed -->
+                    <p id="controlfontsizevalue" class="smallfont">Font-Size : 16</p>
+                 </div>
+            </div>
+
+             <!-- Settings container removed -->
+
+
+            <div class="more_feature">
+                <img height="25px" width="25px" src="icon_white/push_white.svg">
+            </div>
+
+            <div class="google-wrapper">
+                <a id="google_link" href="#" target="_blank">
+                    <img class="rounded" src="icon_white/google_white.svg">
+                </a>
+            </div>
+
+            <div class="preference-container">
+                <div class="prefer-item">
+                    <label>Select Theme :</label>
+                    <select id="theme_selector">
+                        <option value="">Default Light</option>
+                        <option value="discord_dark">Discord Dark</option>
+                        <option value="firefox_dark">Firefox Dark</option>
+                        <option value="nine_anime_dark">9Anime Dark</option>
+                        <option value="youtube_light">YouTube Light</option>
+                       </select>
+                </div>
+                <div class="prefer-item">
+                    <label>Select font :</label>
+                    <select id="font_selector">
+                        
+                        </select>
+                </div>
+                <div class="prefer-item">
+                    <label>Select Font-Color :</label>
+                    <select id="font_color_selector">
+                        
+                        </select>
+                </div>
+                <div class="prefer-item">
+                    <label> Background :</label>
+                    <select id="background_selector">
+                    
+                        </select>
+                </div>
+            </div>
+        </div>
+        <!-- marked.js is now loaded in popup.html -->
+        <!-- Load the local script to display content -->
+        <script type="text/javascript" src="bear.js"></script>
+</body>
+
+</html>
