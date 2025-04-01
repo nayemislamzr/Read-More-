@@ -1,21 +1,30 @@
 {
-    "manifest_version": 2,
-    "name": "fuck",
+    "manifest_version": 3,
+    "name": "Bear Reader",
     "version": "0.001",
     "description": "A reader mode extension with a full of features",
-    "browser_action": {
+    "action": {
         "default_icon": "adjust.png",
         "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
     },
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
         "js": ["html_parser.js", "jquery.js", "content.js"]
     }],
-    "web_accessible_resources": ["bear.htm"],
+    "web_accessible_resources": [{
+        "resources": ["bear.htm"],
+        "matches": ["<all_urls>"]
+    }],
     "permissions": [
-        "activeTab",
+        "scripting",
         "storage",
         "https://generativelanguage.googleapis.com/"
     ],
-    "content_security_policy": "script-src 'self'; object-src 'self'"
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ]
 }
